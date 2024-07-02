@@ -26,7 +26,7 @@ const useAuthCalls = () => {
     const register = async (info) => {
         dispatch(fetchStart())
         try {
-            const { data } = await axiosPublic.post("/auth/register", info)
+            const { data } = await axiosPublic.post("/users", info)
             dispatch(registerSuccess(data))
             toastSuccessNotify("The register process is successful.")
             router.push("/stock")
