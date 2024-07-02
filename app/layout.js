@@ -1,4 +1,5 @@
 import { Providers } from "@/redux/provider";
+import { CssBaseline } from "@mui/material";
 import { Inter } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <Providers>
+          <CssBaseline />
           {children}
           <ToastContainer />
         </Providers>
