@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import useAxios from "./useAxios"
 import { useRouter } from "next/navigation"
-import { fetchFail, fetchStart, loginSuccess } from "@/redux/features/AuthSlice"
+import { fetchFail, fetchStart, loginSuccess, registerSuccess } from "@/redux/features/AuthSlice"
 import { toastErrorNotify, toastSuccessNotify } from "@/helpers/ToastNotify"
 
 const useAuthCalls = () => {
@@ -23,7 +23,21 @@ const useAuthCalls = () => {
         }
     }
 
-    return { login }
+    const register = async (info) => {
+        dispatch(fetchStart())
+        try {
+            const { data } = await axiosPublic.post("/auth/register", info)
+            dispatch(registerSuccess(data))
+            toastSuccessNotify("The register process is successful.")
+            router.push("/stock")
+        } catch (error) {
+            console.log(error)
+            dispatch(fetchFail())
+            toastErrorNotify("The register process failed.")
+        }
+    }
+
+    return { login, register }
 }
 
 export default useAuthCalls

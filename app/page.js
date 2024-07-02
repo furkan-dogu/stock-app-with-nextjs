@@ -49,6 +49,7 @@ export default function Home() {
         container
         justifyContent={"center"}
         direction={"row-reverse"}
+        rowSpacing={2}
         sx={{
           height: "100vh",
           p: 2,
@@ -83,7 +84,7 @@ export default function Home() {
                     required
                     fullWidth
                     id="email"
-                    label="Email Address"
+                    label="Email"
                     name="email"
                     autoComplete="email"
                     autoFocus
