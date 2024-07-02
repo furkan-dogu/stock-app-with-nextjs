@@ -1,5 +1,6 @@
 import storage from 'redux-persist/lib/storage/session'
 import AuthReducer from "./features/AuthSlice"
+import StockReducer from "./features/StockSlice"
 import {
     persistStore,
     persistReducer,
@@ -21,7 +22,8 @@ const persistedReducer = persistReducer(persistConfig, AuthReducer)
 
 const store = configureStore({
     reducer: {
-        auth: persistedReducer
+        auth: persistedReducer,
+        stock: StockReducer
     },
     devTools: process.env.NODE_ENV !== "production",
     middleware: (getDefaultMiddleware) =>
