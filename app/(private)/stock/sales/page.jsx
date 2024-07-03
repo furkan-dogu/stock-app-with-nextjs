@@ -1,8 +1,50 @@
-import React from 'react'
+"use client"
+
+import { Box, Button, Typography } from '@mui/material'
+import SalesTable from './components/SalesTable'
+import { useSelector } from 'react-redux'
+import useStockCalls from '@/hooks/useStockCalls'
+import { useEffect, useState } from 'react'
+import SalesModal from './components/SalesModal'
 
 const Sales = () => {
+  const { sales } = useSelector(state => state.stock)
+  const { getSalesTable } = useStockCalls()
+
+  useEffect(() => {
+    getSalesTable()
+  }, [])
+
+  const [data, setData] = useState({
+    brandId: "",
+    productId: "",
+    price: "",
+    quantity: ""
+  });
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    setData({
+      brandId: "",
+      productId: "",
+      price: "",
+      quantity: ""
+    });
+  };
+  
   return (
-    <div>Sales</div>
+    <Box>
+      <Typography variant="h4" color={"error"} mb={3}>
+        Sales
+      </Typography>
+      <Button variant='contained' sx={{mb: 3}} onClick={handleOpen}>
+        New Sale
+      </Button>
+      <SalesModal open={open} handleClose={handleClose} data={data} setData={setData} />
+      <SalesTable sales={sales} data={data} setData={setData} handleOpen={handleOpen} />
+    </Box>
   )
 }
 

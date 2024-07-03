@@ -4,7 +4,8 @@ import {
     fetchFail, 
     fetchStart, 
     getStocksSuccess,
-    getProductTableSuccess
+    getProductTableSuccess,
+    getSalesTableSuccess
 } from "@/redux/features/StockSlice"
 import { toastErrorNotify, toastSuccessNotify } from "@/helpers/ToastNotify"
 
@@ -83,12 +84,32 @@ const useStockCalls = () => {
         }
     }
 
+    const getSalesTable = async () => {
+        dispatch(fetchStart())
+        try {
+            const [sales, brands, products] = await Promise.all([
+                axiosWithToken("/sales"),
+                axiosWithToken("/brands"),
+                axiosWithToken("/products"),
+            ])
+            dispatch(getSalesTableSuccess([
+                sales?.data?.data,
+                brands?.data?.data,
+                products?.data?.data
+            ]))
+        } catch (error) {
+            console.log(error)
+            dispatch(fetchFail())
+        }
+    }
+
     return { 
         getStocks, 
         deleteStock, 
         addStock, 
         updateStock,
-        getProductTable 
+        getProductTable,
+        getSalesTable 
     }
 }
 
