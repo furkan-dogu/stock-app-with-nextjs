@@ -21,7 +21,13 @@ const Brands = () => {
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false)
+    setData({
+      name: "",
+      image: ""
+    })
+  };
 
   return (
     <Box>
@@ -35,7 +41,7 @@ const Brands = () => {
       <Grid container justifyContent={"center"} spacing={2} mt={2}>
         {brands.map((brand) => (
           <Grid item key={brand._id}>
-            <BrandCard brand={brand} />
+            <BrandCard brand={brand} handleOpen={handleOpen} setData={setData} />
           </Grid>
         ))}
       </Grid>

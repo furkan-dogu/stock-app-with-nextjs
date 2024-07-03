@@ -6,7 +6,7 @@ import { modalStyle } from "@/styles/globalStyle";
 import useStockCalls from "@/hooks/useStockCalls";
 
 export default function BrandModal({ open, handleClose, data, setData }) {
-  const { addStock } = useStockCalls();
+  const { addStock, updateStock } = useStockCalls();
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -15,7 +15,11 @@ export default function BrandModal({ open, handleClose, data, setData }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setData(data);
-    addStock("brands", data);
+    if (data._id) {
+      updateStock("brands", data);
+    } else {
+      addStock("brands", data);
+    }
     handleClose();
   };
 
@@ -35,6 +39,7 @@ export default function BrandModal({ open, handleClose, data, setData }) {
           id="name"
           variant="outlined"
           fullWidth
+          value={data.name}
           onChange={handleChange}
         />
         <TextField
@@ -45,10 +50,11 @@ export default function BrandModal({ open, handleClose, data, setData }) {
           id="image"
           variant="outlined"
           fullWidth
+          value={data.image}
           onChange={handleChange}
         />
         <Button type="submit" fullWidth variant="contained">
-          Add Brand
+          {data._id ? "Update Brand" : "Add Brand"}
         </Button>
       </Box>
     </Modal>

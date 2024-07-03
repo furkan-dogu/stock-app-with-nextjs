@@ -6,8 +6,15 @@ import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { iconStyle } from '@/styles/globalStyle';
+import useStockCalls from '@/hooks/useStockCalls';
 
-export default function BrandCard({ brand }) {
+export default function BrandCard({ brand, handleOpen, setData }) {
+  const { deleteStock } = useStockCalls()
+
+  const handleUpdateBrand = () => {
+    handleOpen()
+    setData(brand)
+  }
     
   return (
     <Card sx={{
@@ -31,8 +38,8 @@ export default function BrandCard({ brand }) {
         image={brand?.image}
       />
       <CardActions>
-        <EditIcon sx={iconStyle} />
-        <DeleteOutlineIcon sx={iconStyle} />
+        <EditIcon sx={iconStyle} onClick={handleUpdateBrand} />
+        <DeleteOutlineIcon sx={iconStyle} onClick={() => deleteStock("brands", brand._id)} />
       </CardActions>
     </Card>
   );
