@@ -6,9 +6,10 @@ import { useSelector } from 'react-redux'
 import useStockCalls from '@/hooks/useStockCalls'
 import { useEffect, useState } from 'react'
 import ProductsModal from './components/ProductsModal'
+import TableSkeleton, { ErrorMsg, NoDataMsg } from '@/components/LoadingAndErrorMsg'
 
 const Products = () => {
-  const { products } = useSelector(state => state.stock)
+  const { products, loading, error } = useSelector(state => state.stock)
   const { getProductTable } = useStockCalls()
 
   useEffect(() => {
@@ -41,7 +42,14 @@ const Products = () => {
         New Product
       </Button>
       <ProductsModal open={open} handleClose={handleClose} data={data} setData={setData} />
-      <ProductTable products={products} />
+
+      {error && <ErrorMsg />}
+
+      {loading && [1,2,3,4,5].map((item) => <TableSkeleton key={item} />)}
+
+      {!error && !loading && !products.length && <NoDataMsg />}
+
+      {!loading && !error && products.length > 0 && (<ProductTable products={products} />)}
     </Box>
   )
 }

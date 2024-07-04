@@ -1,8 +1,8 @@
 "use client"
 
 import useStockCalls from "@/hooks/useStockCalls"
-import Charts from "./components/Charts"
-import KPI from "./components/KPI"
+import Charts from "../../../components/Charts"
+import KPI from "../../../components/KPI"
 import { useSelector } from "react-redux"
 import { useEffect } from "react"
 

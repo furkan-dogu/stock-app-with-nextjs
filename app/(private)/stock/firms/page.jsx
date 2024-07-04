@@ -6,10 +6,11 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import FirmCard from './components/FirmCard'
 import FirmModal from './components/FirmModal'
+import { ErrorMsg, NoDataMsg, Spinner } from '@/components/LoadingAndErrorMsg'
 
 const Firms = () => {
   const { getStocks } = useStockCalls()
-  const { firms } = useSelector(state => state.stock)
+  const { firms, loading, error } = useSelector(state => state.stock)
   const [data, setData] = useState({
     name: "",
     phone: "",
@@ -41,13 +42,20 @@ const Firms = () => {
         New Firm
       </Button>
       <FirmModal open={open} handleClose={handleClose} data={data} setData={setData} />
-      <Grid container justifyContent={"center"} spacing={2} mt={2}>
+
+      {error && <ErrorMsg />}
+
+      {loading && <Spinner />}
+
+      {!loading && !firms.length && <NoDataMsg />}
+
+      {!error && !loading && firms.length > 0 && (<Grid container justifyContent={"center"} spacing={2} mt={2}>
         {firms.map((firm) => (
           <Grid item key={firm._id}>
             <FirmCard firm={firm} handleOpen={handleOpen} setData={setData} />
           </Grid>
         ))}
-      </Grid>
+      </Grid>)}
     </Box>
   )
 }
