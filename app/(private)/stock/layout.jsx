@@ -20,7 +20,7 @@ import useAuthCalls from "@/hooks/useAuthCalls";
 import { icons } from "@/helpers/menuIcons";
 import { useRouter } from "next/navigation";
 
-const drawerWidth = 200;
+const drawerWidth = 160;
 
 function StockLayout(props) {
   const { window } = props;
@@ -67,7 +67,7 @@ function StockLayout(props) {
             onClick={() => router.push(url)}
           >
             <ListItemButton>
-              <ListItemIcon>{icon}</ListItemIcon>
+              <ListItemIcon sx={{mr: "-20px"}}>{icon}</ListItemIcon>
               <ListItemText primary={title} />
             </ListItemButton>
           </ListItem>

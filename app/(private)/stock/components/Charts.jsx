@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
-import { Card, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 
 export default function Charts({ sales, purchases }) {
   const salesData = sales?.map((item) => ({
@@ -8,8 +8,8 @@ export default function Charts({ sales, purchases }) {
     Amount: item.amount,
   }));
 
-  const salesDates = salesData.map((item) => item.date);
-  const salesAmount = salesData.map((item) => item.Amount);
+  const salesDates = salesData?.map((item) => item.date);
+  const salesAmount = salesData?.map((item) => item.Amount);
 
   const purchasesData = purchases?.map((item) => ({
     date: new Date(item.createdAt).toLocaleDateString(),
@@ -21,38 +21,36 @@ export default function Charts({ sales, purchases }) {
 
   return (
     <Container>
-      <Grid container mt={2} spacing={2}>
-        <Grid item xs={12} lg={6}>
+      <Stack justifyContent={"center"} direction={"row"} gap={3} mt={3} flexWrap={"wrap"}>
+        <Box bgcolor={"lightgray"} p={2} borderRadius={2} boxShadow={3}>
           <Typography variant="h6">Total Sales (USD)</Typography>
-          <Card>
+          <Box>
             <BarChart
               xAxis={[
                 {
                   scaleType: "band",
                   data: salesDates,
-                  label: "Date",
                 },
               ]}
               series={[
                 {
                   data: salesAmount,
-                  label: "Amount",
+                  label: "Amount"
                 },
               ]}
-              width={500}
+              width={400}
               height={300}
             />
-          </Card>
-        </Grid>
-        <Grid item xs={12} lg={6}>
+          </Box>
+        </Box>
+        <Box bgcolor={"lightgray"} p={2} borderRadius={2} boxShadow={3}>
           <Typography variant="h6">Total Purchases (USD)</Typography>
-          <Card>
+          <Box>
             <BarChart
               xAxis={[
                 {
                   scaleType: "band",
                   data: purchasesDates,
-                  label: "Date",
                 },
               ]}
               series={[
@@ -61,12 +59,12 @@ export default function Charts({ sales, purchases }) {
                   label: "Amount",
                 },
               ]}
-              width={500}
+              width={400}
               height={300}
             />
-          </Card>
-        </Grid>
-      </Grid>
+          </Box>
+        </Box>
+      </Stack>
     </Container>
   );
 }
