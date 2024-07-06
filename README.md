@@ -42,7 +42,6 @@ This project, developed with Nextjs, is a single-page online web application. It
 - Redux
 - Redux-Toolkit
 - Axios for API requests
-- React-Router-Dom
 - Styling with [Material UI](https://mui.com/)
 - [React-Toastify](https://fkhadra.github.io/react-toastify/introduction/) for alert 
 - [Redux-Persist](https://www.npmjs.com/package/redux-persist) for status data retention.
