@@ -1,6 +1,6 @@
 import { Alert, Skeleton, Stack } from "@mui/material";
 import { Box } from "@mui/material";
-import spinner from "@/public/loading.gif"
+import spinner from "@/assets/loading.gif"
 import Image from "next/image";
 
 export const ErrorMsg = () => {

@@ -1,11 +1,11 @@
 "use client"
 
 import { Box, Button, Typography } from '@mui/material'
-import PurchasesTable from './components/PurchasesTable'
+import PurchaseTable from './components/PurchaseTable'
 import { useSelector } from 'react-redux'
 import useStockCalls from '@/hooks/useStockCalls'
 import { useEffect, useState } from 'react'
-import PurchasesModal from './components/PurchasesModal'
+import PurchaseModal from './components/PurchaseModal'
 import TableSkeleton, { ErrorMsg, NoDataMsg } from '@/components/LoadingAndErrorMsg'
 
 const Purchases = () => {
@@ -45,7 +45,7 @@ const Purchases = () => {
       <Button variant='contained' sx={{mb: 3}} onClick={handleOpen}>
         New Purchase
       </Button>
-      <PurchasesModal open={open} handleClose={handleClose} data={data} setData={setData} />
+      <PurchaseModal open={open} handleClose={handleClose} data={data} setData={setData} />
 
       {error && <ErrorMsg />}
 
@@ -53,7 +53,7 @@ const Purchases = () => {
 
       {!error && !loading && !purchases.length && <NoDataMsg />}
 
-      {!error && !loading && purchases.length > 0 && <PurchasesTable purchases={purchases} data={data} setData={setData} handleOpen={handleOpen} />}
+      {!error && !loading && purchases.length > 0 && <PurchaseTable purchases={purchases} data={data} setData={setData} handleOpen={handleOpen} />}
     </Box>
   )
 }

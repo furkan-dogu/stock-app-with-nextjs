@@ -1,11 +1,11 @@
 "use client"
 
 import { Box, Button, Typography } from '@mui/material'
-import SalesTable from './components/SalesTable'
+import SaleTable from './components/SaleTable'
 import { useSelector } from 'react-redux'
 import useStockCalls from '@/hooks/useStockCalls'
 import { useEffect, useState } from 'react'
-import SalesModal from './components/SalesModal'
+import SaleModal from './components/SaleModal'
 import TableSkeleton, { ErrorMsg, NoDataMsg } from '@/components/LoadingAndErrorMsg'
 
 const Sales = () => {
@@ -43,7 +43,7 @@ const Sales = () => {
       <Button variant='contained' sx={{mb: 3}} onClick={handleOpen}>
         New Sale
       </Button>
-      <SalesModal open={open} handleClose={handleClose} data={data} setData={setData} />
+      <SaleModal open={open} handleClose={handleClose} data={data} setData={setData} />
 
       {error && <ErrorMsg />}
 
@@ -51,7 +51,7 @@ const Sales = () => {
 
       {!loading && !sales.length && <NoDataMsg />}
 
-      {!error && !loading && sales.length > 0 && <SalesTable sales={sales} data={data} setData={setData} handleOpen={handleOpen} />}
+      {!error && !loading && sales.length > 0 && <SaleTable sales={sales} data={data} setData={setData} handleOpen={handleOpen} />}
     </Box>
   )
 }

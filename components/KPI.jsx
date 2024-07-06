@@ -42,6 +42,7 @@ const KPI = ({ sales, purchases }) => {
       direction={"row"}
       flexWrap={"wrap"}
       gap={2}
+      margin={"auto"}
     >
       {kpiData.map(({ id, title, amount, icon, bgColor, color }) => (
         <Paper

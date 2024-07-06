@@ -5,7 +5,7 @@ import ProductTable from './components/ProductTable'
 import { useSelector } from 'react-redux'
 import useStockCalls from '@/hooks/useStockCalls'
 import { useEffect, useState } from 'react'
-import ProductsModal from './components/ProductsModal'
+import ProductModal from './components/ProductModal'
 import TableSkeleton, { ErrorMsg, NoDataMsg } from '@/components/LoadingAndErrorMsg'
 
 const Products = () => {
@@ -41,7 +41,7 @@ const Products = () => {
       <Button variant='contained' sx={{mb: 3}} onClick={handleOpen}>
         New Product
       </Button>
-      <ProductsModal open={open} handleClose={handleClose} data={data} setData={setData} />
+      <ProductModal open={open} handleClose={handleClose} data={data} setData={setData} />
 
       {error && <ErrorMsg />}
 
