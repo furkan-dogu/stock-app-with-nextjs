@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useRouter } from "next/navigation";
 import { object, string } from "yup";
-import image from "@/public/result.png";
+import image from "@/assets/result.png";
 import Image from "next/image";
 import { Stack } from "@mui/material";
 import { Form, Formik } from "formik";
