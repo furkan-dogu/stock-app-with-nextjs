@@ -116,8 +116,6 @@ Stock App with Nextjs (folder)
 │    │      └── StockSlice.jsx
 │    ├── provider.jsx
 │    └── store.jsx
-├── public
-│    └── globalStyle.js
 ├── .gitignore
 ├── jsconfig.json
 ├── next.config.mjs
